@@ -1,0 +1,10 @@
+Template: chalets/version
+Type: string
+Description: Which version do you want install?
+ Which version of chalets application do you want to install?
+
+Template: chalets/env
+Type: string
+Description: For which environment?
+ For which environment do you want the chalets application
+	

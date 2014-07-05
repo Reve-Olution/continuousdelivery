@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+#Source debconf library
+. /usr/share/debconf/confmodule
+
+#Which version
+db_input high chalets/version || true
+db_input high chalets/env || true
+db_go
