@@ -3,17 +3,16 @@
 # Source debconf library
 . /usr/share/debconf/confmodule
 
+#Récupération de la variable version depuis la configuration debian
 db_get chalets/version
 version=$RET
-echo $version
 
+#Récupération de la variable environment depuis la configuration debian
 db_get chalets/env
 env=$RET
-echo $env
-java -jar /srv/chalets/chalets-$version.jar server > /dev/null &
 
-# Création de la base de données
-mysql -u root -e "create database test"
+#Lancement du chalets.jar (serveur services REST)
+java -jar /srv/chalets/chalets-$version.jar server > /dev/null &
 
 # Lancement de liquibase
 cd /tmp/chalets
@@ -23,6 +22,9 @@ chmod +x ./liquibase
 # Téléchargement de la configuration
 curl "http://www.ludine.ch/cd/config/$env.jpg" --create-dirs -o /etc/chalets/logo.jpg
 
+#Création d'un lien symbolique sur la configuration
 ln -s /etc/chalets/ /var/www/html/config
 chmod -R 777 /etc/chalets
+
+#Arret de la configuration DEBIAN (IMPORTANT !)
 db_stop
