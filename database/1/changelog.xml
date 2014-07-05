@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+	<changeSet id="1" author="geiser">
+		<createTable tableName="Chalets">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true"  nullable="false"/>
+			</column>
+			<column name="nom" type="varchar(50)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="description" type="varchar(200)">
+				<constraints nullable="false" unique="false"/>
+			</column>
+		</createTable>
+		<createTable tableName="Utilisateurs">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true"  nullable="false"/>
+			</column>
+			<column name="utilisateur" type="varchar(50)">
+				<constraints unique="true" nullable="false"/>
+			</column>
+			<column name="motdepasse" type="varchar(50)">
+				<constraints unique="true" nullable="false"/>
+			</column>
+		</createTable>
+		<createTable tableName="Reservations">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true"  nullable="false"/>
+			</column>
+			<column name="idUtilisateur" type="int">
+				<constraints nullable="false" unique="false"/>
+			</column>
+			<column name="idChalet" type="int">
+				<constraints nullable="false" unique="false"/>
+			</column>
+			<column name="dateDebut" type="date"></column>
+			<column name="dateFin" type="date"></column>
+		</createTable>
+	</changeSet>
+	<changeSet id="2" author="age">
+		<insert tableName="Chalets">
+			<column name="nom" value="Chalet1"></column>
+			<column name="description" value="Chalet no° 1"></column>
+		</insert>
+		<insert tableName="Utilisateurs">
+			<column name="utilisateur" value="age"></column>
+			<column name="motdepasse" value="age"></column>
+		</insert>
+		<insert tableName="Reservations">
+			<column name="idUtilisateur" value="1"></column>
+			<column name="idChalet" value="1"></column>
+			<column name="dateDebut" value="2013-01-01"></column>
+			<column name="dateFin" value="2013-01-07"></column>
+		</insert>
+	</changeSet>
+</databaseChangeLog>

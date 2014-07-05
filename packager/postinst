@@ -1,0 +1,28 @@
+#!/bin/sh -e
+
+# Source debconf library
+. /usr/share/debconf/confmodule
+
+db_get chalets/version
+version=$RET
+echo $version
+
+db_get chalets/env
+env=$RET
+echo $env
+java -jar /srv/chalets/chalets-$version.jar server > /dev/null &
+
+# Création de la base de données
+mysql -u root -e "create database test"
+
+# Lancement de liquibase
+cd /tmp/chalets
+chmod +x ./liquibase
+./liquibase migrate
+
+# Téléchargement de la configuration
+curl "http://www.ludine.ch/cd/config/$env.jpg" --create-dirs -o /etc/chalets/logo.jpg
+
+ln -s /etc/chalets/ /var/www/html/config
+chmod -R 777 /etc/chalets
+db_stop
