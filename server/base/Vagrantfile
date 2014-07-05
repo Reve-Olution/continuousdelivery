@@ -1,0 +1,14 @@
+#test
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "joscarsson/ubuntu-trusty64"
+  config.vm.provision "shell" do |s|
+	s.path = "script.sh"
+	s.args = "#{ENV['VERSION']} #{ENV['CONF']}"
+  end
+
+  config.vm.network "public_network"
+  config.ssh.password = "vagrant"
+
+end

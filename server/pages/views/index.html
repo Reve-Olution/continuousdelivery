@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <title>GLOBAZ : Create your sandbox</title>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="jquery-ui/js/jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="foundation/css/foundation.min.css" />
+        <link rel="stylesheet" type="text/css" href="jquery-ui/css/flick/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        
+    </head>
+    <body>
+        <div id="script">
+        
+        </div>
+        <form id="form" name="form" action="#" method="post">
+            <div class="row">
+                <div style="text-align:center;" class="large-12 columns">
+                    <img src="img/continuous_delivery.png" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Email Adress
+                        <input id="email" required="required" name="email" type="text" placeholder="Your Email Address" />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Version
+                        <select id="version" name="version">
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Configuration
+                        <select id="configuration" name="configuration">
+                            <option value="verbier">Verbier</option>
+                            <option selected="selected" value="lescrosets">Les Crosets</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns center">
+                    <label>Environment
+                        <select id="environment" name="environment">
+                            <option selected="selected" value="testing">Testing</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div style="text-align:center;">
+                <input id="submit" type="submit" value="Create" class="button" />
+            </div>
+        </form>
+    </body>
+</html>
